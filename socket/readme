@@ -1,0 +1,10 @@
+link: client - server with socket AF_UNIX
+_____________________
+RUN:
+gcc server.c -o server
+gcc client.c -o client
+WINDOW 1                  WINDOW 2
+./server                 |./client
+                         |ENTER message, before "q"
+____________________
+

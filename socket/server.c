@@ -3,11 +3,13 @@
 
 int main() {
     unlink(PATH);
-    struct sockaddr_un my_socket = {0};
-    int sk = socket(AF_UNIX, SOCK_STREAM, 0);
+    struct sockaddr_in my_socket = {0};
+    int sk = socket(AF_INET, SOCK_STREAM, 0);
     check(sk);
-    my_socket.sun_family = AF_UNIX;
-    strncpy(my_socket.sun_path, PATH, sizeof(PATH));
+    my_socket.sin_family = AF_INET;
+    my_socket.sin_port = htons(23456);
+    my_socket.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    //strncpy(my_socket.sun_path, PATH, sizeof(PATH));
     int ret = bind(sk, (struct sockaddr*) &(my_socket), sizeof(my_socket));
     if ( ret < 0 ) {
         close(sk);

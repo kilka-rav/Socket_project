@@ -1,12 +1,28 @@
 #include "my_server.h"
 
 
-int main() {
-    struct sockaddr_un name = {0};
-    int sk = socket(AF_UNIX, SOCK_STREAM, 0);
+int main(int argc, char** argv) {
+    if ( argc != 2 ) {
+        fprintf(stderr, "ERROR IN INPUT\n");
+        exit(1);
+    }
+    //char* ip = argv[1];
+    //check(ip);
+    printf("%d\n", htonl(INADDR_LOOPBACK));
+    /*
+    if ( ip != htonl(INADDR_LOOPBACK) ) {
+        printf("bad addres\n");
+        exit(1);
+    }
+    */
+    struct sockaddr_in name = {0};
+    int sk = socket(AF_INET, SOCK_STREAM, 0);
     check(sk);
-    name.sun_family = AF_UNIX;
-    strncpy(name.sun_path, PATH, sizeof(PATH));
+    name.sin_family = AF_INET;
+    name.sin_port = htons(23456);
+    int ipy = inet_aton(argv[1], &(name.sin_addr));
+    //name.sin_addr.s_addr = ipy;
+    //strncpy(name.sin_family, PATH, sizeof(PATH));
     int ret = connect(sk, (struct sockaddr*) &name, sizeof(name));
     check(ret);
     char* flag = (char*) malloc(BUFSZ);

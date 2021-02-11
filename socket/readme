@@ -1,4 +1,4 @@
-link: client - server with socket AF_UNIX
+link: client - server with socket AF_INET
 _____________________
 RUN:
 gcc server.c -o server

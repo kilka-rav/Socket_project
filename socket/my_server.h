@@ -10,6 +10,11 @@
 #include <sys/un.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+
+
 
 #define PATH "/tmp/mysock"
 #define BUFSZ 256

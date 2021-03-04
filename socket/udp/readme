@@ -1,0 +1,14 @@
+udp server
+commands: "q" - exit
+          "print" - print
+          "ls" - list
+          "cd" - change directory"
+_________________
+RUN:
+gcc server.c -o server
+gcc client.c -o client
+./server                            |./client
+ to act command                     |print hello
+                                    |ls
+                                    |q
+

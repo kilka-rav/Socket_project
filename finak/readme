@@ -1,0 +1,26 @@
+Programm client-server.
+TCP - UDP. 
+features.
+1) daemon
+2) client isolation
+3) tcp/udp switch
+4) remote shell
+5) log files
+6) makefile
+7) broadcast
+8) remote shell
+9) error handling)
+10) cryptography
+
+RUN:
+______________________
+make
+./server udp or tcp
+./client udp or tcp 127.0.0.1
+print "Hello"
+ls
+cd
+shell
+quit
+________________________
+

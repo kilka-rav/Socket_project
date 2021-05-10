@@ -60,9 +60,8 @@ int main(int argc, char** argv) {
     while (flag)
     {
         create_sock_name(&name, addr);
-        printf("type in your request: ");
+        printf("Enter command: ");
         flag = get_str(buffer, &name);
-        //printf("flag: (%d)\tbuffer:(%s)\n", flag, buffer);
         
         if (flag >= 0) //usual command
         {
@@ -76,13 +75,12 @@ int main(int argc, char** argv) {
             else if (flag == 2)  //if command shell
                 shell = 1; 
 
-            //printf("flag = %d\tshell = %d\n", flag, shell);
             if ((flag == 1) || ((flag == 0) && (shell == 1)) || (flag == 2)) //if classic command or exit in shell or "shell" command
             {
                 name.sin_addr.s_addr = htonl(INADDR_ANY);
                 name.sin_port = 0;
                 bind_socket(sk, name);  //bind to rec message back
-                printf("response on request:\n");
+                printf("Enter command:\n");
                 receive_data(sk, &name, buffer, sk, receive_buf);
             }
         }
@@ -97,7 +95,6 @@ int main(int argc, char** argv) {
 
             receive_buf(sk, &name, buffer, sk);
             printf("find server, buf: (%s), ip: %s\n", buffer, inet_ntoa(name.sin_addr));
-            //setsockopt(sk, SOL_SOCKET, SO_)  //change sk opt to usual mode (not broadcast)
         }
     }
 

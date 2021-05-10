@@ -135,7 +135,7 @@ int master(int sk, struct sockaddr_in* name,
                     return -1;
                 }
                 
-                fprintf(logfile, "id: %d\tConnected\n", clients[position].client_id);   //stdout can't be replaced!?!?!?!?!
+                fprintf(logfile, "Connected\n");   //stdout can't be replaced!?!?!?!?!
                 clients[position].pid = pid;
             }
 
@@ -143,12 +143,12 @@ int master(int sk, struct sockaddr_in* name,
 
             if (starts_with(data, EXIT))  //if command exit in shell
             {
-                fprintf(logfile, "id: %d\tDeactivated shell\n", clients[position].client_id);
+                fprintf(logfile, "Deactivated shell\n");
                 clients[position].shell = 0;
             }
             else if (starts_with(data, SHELL)) //if command shell
             {
-                fprintf(logfile, "id: %d\tStarting shell\n", clients[position].client_id);
+                fprintf(logfile, "Starting shell\n");
                 clients[position].shell = 1;
             }
 
